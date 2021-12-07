@@ -1,0 +1,13 @@
+<h1>Friend requests</h1>
+<h2>Accept Friends</h2>
+<% @request.each do |friend| %>
+  <div class="card">
+    <div class="card-body">
+      <h3 class="card-title"><%= friend.name %></h3>
+      <div class="btn-group" role="group">
+        <%= link_to 'Accept', user_accept_path(friend), method: :put, class: 'btn btn-success' %>
+        <%= link_to 'Reject', user_reject_path(friend), method: :put, class: 'btn btn-danger' %>
+      </div>
+    </div>
+  </div>
+<% end %>

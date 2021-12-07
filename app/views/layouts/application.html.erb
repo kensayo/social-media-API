@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RorSocialScaffold</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+<body class="container ">
+
+
+<nav class="navbar navbar-expand navbar-light bg-light rounded-bottom">
+  <div class="container-fluid">
+    <%= link_to 'Stay in touch', root_path, class: 'navbar-brand fw-bold' %>
+    <div class="collapse navbar-collapse" style="flex-grow: 0" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 fw-bold">
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to current_user.name, users_path(current_user), class: 'nav-link fw-bold text-success' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Timeline', posts_path, class: 'nav-link fw-bold' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'All users', users_path, class: 'nav-link fw-bold' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Friend Request', user_friend_request_path(current_user), class: 'nav-link fw-bold' %>
+          </li>
+        <% end %>
+        <% if current_user %>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-link btn btn-success text-white fw-bold' %>
+        <% else %>
+          <%= link_to 'Sign in', user_session_path, class: 'nav-link  btn btn-success text-white fw-bold' %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
+<% if notice.present? %>
+  <div class="alert alert-success mt-4 w-50 px-2 mx-auto fw-bold d-flex align-items-center justify-content-center">
+    <span> <%= notice %> </span>
+  </div>
+<% end %>
+<% if alert.present? %>
+  <div class="alert alert-danger mt-4 w-50 px-2 mx-auto fw-bold d-flex align-items-center justify-content-center">
+    <span> <%= alert %> </span>
+  </div>
+<% end %>
+<main class="main">
+  <%= yield %>
+</main>
+</body>
+</html>

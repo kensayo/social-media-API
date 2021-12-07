@@ -1,0 +1,15 @@
+<section class="user-section">
+  <div class="d-flex justify-content-between align-items-center">
+  <h2><%= "#{@user.name}" %></h2>
+  <% if !Friendship.requested?(current_user.id, @user.id)%>
+    <%= link_to 'Add friend', user_add_friend_path(@user), method: :post, style: 'height: fit-content',
+                class: 'fw-bold text-white text-decoration-none badge bg-success text-wrap' %>
+  <% end %>
+  </div>
+  <article class="timeline">
+    <h3>My friends recent posts:</h3>
+    <ul class="posts">
+      <%= render @posts %>
+    </ul>
+  </article>
+</section>
