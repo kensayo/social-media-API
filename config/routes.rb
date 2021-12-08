@@ -15,4 +15,12 @@ Rails.application.routes.draw do
     resources :comments, only: [:create]
     resources :likes, only: %i[create destroy]
   end
+
+  namespace :api do
+    namespace :v1, default: { format: :json }  do
+      resources :posts, only: [index create]
+      post '/sign_in', to: 'sessions#create', as: 'user_sign_in'
+      delete '/sign_out', to: 'sessions#destroy', as: 'user_sign_out'
+    end
+  end
 end
