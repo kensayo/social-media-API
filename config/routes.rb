@@ -79,9 +79,11 @@ Rails.application.routes.draw do
 
 
 
-      resources :posts, only: %i[index create] 
+      resources :posts, only: %i[index create] do
 
-
+        resources :comments, only: [:index]
+      
+      end
 
       post '/sign_in', to: 'sessions#create', as: 'user_sign_in'
 
@@ -89,7 +91,7 @@ Rails.application.routes.draw do
 
       delete '/sign_out', to: 'sessions#destroy', as: 'user_sign_out'
 
-
+      
 
     end
 
