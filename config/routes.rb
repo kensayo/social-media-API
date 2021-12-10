@@ -28,7 +28,8 @@ Rails.application.routes.draw do
       delete '/sign_out', to: 'sessions#destroy', as: 'user_sign_out'
     end
 
-
+#     mount Rswag::Ui::Engine => "/api-docs"
+# mount Rswag::Api::Engine => "/api-docs"
 
 
 

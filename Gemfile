@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 
 
-ruby '2.7.2'
+ruby '2.6.6'
 
 
 
@@ -91,6 +91,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
   gem 'rspec-rails', '~> 5.0.0'
+  
+  gem "rswag-specs"
 
 end
 
